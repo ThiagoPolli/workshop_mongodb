@@ -34,6 +34,7 @@ public class UserReasource {
 		return ResponseEntity.ok().body(listDto);
 	}
 	
+	//Recusos de busca do ususario
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	public ResponseEntity <UserDTO> findById(@PathVariable String id){
 		
@@ -42,6 +43,7 @@ public class UserReasource {
 		return ResponseEntity.ok().body(new UserDTO(obj));
 	}
 	
+	//Recursos para inserir usuario
 	@RequestMapping( method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody UserDTO objDto){
 		
@@ -51,4 +53,15 @@ public class UserReasource {
 				
 		return ResponseEntity.created(uri).build();
 	}
+	
+	//Recursos para deletar usuario
+	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable String id){
+		
+		service.delete(id);
+				
+		return ResponseEntity.noContent().build();
+	}
 }
+	
+
